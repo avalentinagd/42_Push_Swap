@@ -40,6 +40,7 @@ typedef struct s_stats
     int	bench;
     char	*strategy_name;
     int	total_ops;
+    double  disorder;
     int	sa;
     int	sb;
     int	ss;
@@ -53,22 +54,25 @@ typedef struct s_stats
     int	rrr;
 }   t_stats;
 
-// Prototipos de funciones
+// Prototipos de funciones para reporte de estadísticas
 void	init_stats(t_stats *stats);
 void	ft_putstr_stderr(char *str);
 void	ft_putnbr_stderr(int n);
-void	print_bench_results(t_stats *stats, double disorder);
-int		check_flag(char *arg, t_stats *stats);
+void	print_bench_results(t_stats *stats);
+
+// Funciones de gestión de staks (src/stack_utils.c)
 t_stack	*init_stack(void);
 t_node	*stack_new_node(int value);
 void    stack_add_top(t_stack *stack, t_node *new_node);
 void	stack_add_bottom(t_stack *stack, t_node *new_node);
 void	free_stack(t_stack *stack);
-// Utilidades de Parseo y Split (src/parse_utils.c)
+
+// Funciones de Parseo y Split (src/parse_utils.c)
 void	free_split(char **split);
 size_t	split_len(char **split);
 int		is_valid_number(char *str);
 int		parse_long(char *str, long long *out_val);
+double	compute_disorder(t_stack *a);
 
 // Detección de Flags (src/parse_flags.c)
 int		ft_strcmp(const char *s1, const char *s2);
@@ -76,6 +80,8 @@ int		check_flag(char *arg, t_stats *stats);
 
 // Core de Parsing (src/parser.c)
 int		process_number(char *str, t_stack *stack);
+int		print_error(void);
 int		parse_arguments(int argc, char **argv, t_stack *stack_a, t_stats *stats);
+
 
 #endif

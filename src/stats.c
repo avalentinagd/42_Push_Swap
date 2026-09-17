@@ -18,6 +18,7 @@ void    init_stats(t_stats *stats)
     stats->bench = 0;
     stats->strategy_name = "Adaptive"; // Nombre por defecto
     stats->total_ops = 0;
+	stats->disorder = 0.0;
     stats->sa = 0;
     stats->sb = 0;
     stats->ss = 0;
@@ -66,14 +67,14 @@ void	ft_putnbr_stderr(int n)
 }
 
 // Imprime el reporte obligatorio en stderr si la flag bench está encendida
-void	print_bench_results(t_stats *stats, double disorder)
+void	print_bench_results(t_stats *stats)
 {
 	if (!stats || !stats->bench)
 		return ;
 
 	// 1. Mostrar desorden (multiplicado por 100 para porcentaje)
 	ft_putstr_stderr("[bench] disorder: ");
-	ft_putnbr_stderr((int)(disorder * 100));
+	ft_putnbr_stderr((stats->disorder * 100));
 	ft_putstr_stderr("\n");
 
 	// 2. Mostrar estrategia

@@ -4,7 +4,7 @@ CFLAGS      = -Wall -Wextra -Werror
 
 # 1. Se eliminó src/ft_split.c porque ya viene incluido dentro de la libft.a
 SRCS        = src/main.c src/stats.c src/stack_utils.c src/parse_flags.c \
-              src/parse_utils.c src/parser.c
+              src/parse_utils.c src/parser.c 
 
 RM          = rm -f
 LIBFT_PATH  = libft

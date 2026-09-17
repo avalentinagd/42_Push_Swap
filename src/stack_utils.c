@@ -98,5 +98,9 @@ void	free_stack(t_stack *stack)
 		free(current);
 		current = next;
 	}
+	// Liberar la estructura de la pila en sí
 	free(stack);
+	// stack->top = NULL;    // Buenas prácticas: dejar los punteros limpios
+	// stack->bottom = NULL;
+	// stack->size = 0;
 }

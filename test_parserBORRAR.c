@@ -3,33 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   test_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: angalleg <angalleg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/10 05:06:05 by marvin            #+#    #+#             */
-/*   Updated: 2026/09/10 05:06:05 by marvin           ###   ########.fr       */
+/*   Created: 2026/09/10 05:06:05 by angalleg          #+#    #+#             */
+/*   Updated: 2026/09/10 05:06:05 by angalleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 #include <stdio.h>
-
-void	init_stats(t_stats *stats)
-{
-	stats->bench = 0;
-	stats->strategy_name = "Adaptive";
-	stats->total_ops = 0;
-	stats->sa = 0;
-	stats->sb = 0;
-	stats->ss = 0;
-	stats->pa = 0;
-	stats->pb = 0;
-	stats->ra = 0;
-	stats->rb = 0;
-	stats->rr = 0;
-	stats->rra = 0;
-	stats->rrb = 0;
-	stats->rrr = 0;
-}
 
 void	print_parsed_stack(t_stack *a, t_stats *stats)
 {
@@ -54,42 +36,38 @@ void	print_parsed_stack(t_stack *a, t_stats *stats)
 
 int	main(int argc, char **argv)
 {
-	t_stack	a;
+	t_stack	*a;
 	t_stats	stats;
 
 	if (argc < 2)
 		return (0);
 
-	a.top = NULL;
-	a.bottom = NULL;
-	a.size = 0;
-	init_stats(&stats);
-
-	if (!parse_arguments(argc, argv, &a, &stats))
-	{
-		write(2, "Error\n", 6);
-		free_stack(&a); // Liberar nodos en caso de error
+	init_stats(&stats); // Inicializamos las estadísticas a cero
+	stats.bench = 1; // Para probar la función, activamos el modo bench a mano temporalmente
+	a = init_stack(); // Creamos la estructura del stack en memoria con init_stack que hace malloc
+	if (!a)
 		return (1);
-	}
-
-	print_parsed_stack(&a, &stats);
-	
-	// Limpieza de nodos
-	t_node *curr = a.top;
-	t_node *next;
-	while (curr)
+	// Lee los argumentos y llena el stack 'a'
+	if (!parse_arguments(argc, argv, a, &stats)) 
 	{
-		next = curr->next;
-		free(curr);
-		curr = next;
+		free_stack(a); // Es seguro y limpia los nodos en caso de error
+		return (1); // Ya se imprimió "Error\n" por dentro desde parse_arguments()
 	}
+	stats.disorder = compute_disorder(a); // CALCULAR E IMPRIMIR EL ÍNDICE
+	//printf("Índice de desorden inicial: %f\n", disorder);
+
+	print_parsed_stack(a, &stats); // Resultado visual del parseo (mi función de prueba)
+	print_bench_results(&stats); // MOSTRAR LAS ESTADÍSTICAS POR LA TERMINAL (STDOUT/STDERR)
+	
+	free_stack(a); // Limpiamos toda la memoria antes de salir
 	return (0);
 }
+
 
 // Compilación y Prueba:
 
 // # Compilar el test
-// cc -Wall -Wextra -Werror -I include -I libft test_parser.c src/parser.c src/parse_utils.c src/parse_flags.c src/stack_utils.c libft/libft.a -o test_parser
+// cc -g -Wall -Wextra -Werror -I include -I libft test_parserBORRAR.c src/stats.c src/parser.c src/parse_utils.c src/parse_flags.c src/stack_utils.c libft/libft.a -o test_parser
 
 // # Prueba 1: Números sueltos
 // ./test_parser 42 -10 0 100
@@ -102,3 +80,12 @@ int	main(int argc, char **argv)
 
 // # Prueba 4: Error (Debe imprimir Error\n por stderr)
 // ./test_parser 1 2 tres 4
+
+// Prueba 5 duplicados: 
+// valgrind ./test_parser 2 3 2
+
+// Prueba 6 caracteres inválidos: 
+// valgrind ./test_parser 2 "3 a" 5
+
+// Prueba 7 desbordamiento (Overflow): (un número mayor al INT_MAX).
+// valgrind ./test_parser 2147483648 

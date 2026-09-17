@@ -26,6 +26,6 @@ int	main(int argc, char **argv)
 		check_flag(argv[i], &stats);
 		i++;
 	}
-	print_bench_results(&stats, 0.45);
+	print_bench_results(&stats);
 	return (0);
 }

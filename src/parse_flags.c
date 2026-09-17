@@ -26,6 +26,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 // Comprueba si un argumento es una flag válida y actualiza las estadísticas
 // Identifica las banderas obligatorias del proyecto. Devuelve 1 si era una bandera válida, 
 // 0 si es un argumento numérico normal, y -1 si es un flag erróneo o desconocido.
+// arg[0] == '-' && arg[1] == '-' para no confundir nros negativos con flags inválidos.
 int check_flag(char *arg, t_stats *stats)
 {
     if (ft_strcmp(arg, "--bench") == 0)
@@ -38,7 +39,9 @@ int check_flag(char *arg, t_stats *stats)
         stats->strategy_name = "Complex / O(n log n)";
     else if (ft_strcmp(arg, "--adaptive") == 0)
         stats->strategy_name = "Adaptive";
+    else if (arg[0] == '-' && arg[1] == '-')
+		return (-1); // Es un flag NO válida
     else
-        return (0); // No es una flag, es un número o entrada inválida
-    return (1);     // Sí era una flag
+        return (0);  // No es una flag, es un número o entrada inválida
+    return (1);      // Sí era una flag
 }

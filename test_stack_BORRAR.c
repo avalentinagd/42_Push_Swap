@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: angalleg <angalleg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/08 18:47:10 by marvin            #+#    #+#             */
-/*   Updated: 2026/09/08 18:47:10 by marvin           ###   ########.fr       */
+/*   Created: 2026/09/08 18:47:10 by angalleg          #+#    #+#             */
+/*   Updated: 2026/09/08 18:47:10 by angalleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void    print_stack_debug(t_stack *stack, char *name)
     printf("\n---------------------------------------\n");
 }
 
-//  cc -Wall -Wextra -Werror -I include test_stack_BORRAR.c src/stack_utils.c -o test_stack
+//  cc -Wall -Wextra -Werror -I include -I libft test_stack_BORRAR.c src/stack_utils.c -o test_stack
 //  Verificar ausencia total de leaks mediante Valgrind: valgrind --leak-check=full --show-leak-kinds=all ./test_stack
 
 int main(void)
