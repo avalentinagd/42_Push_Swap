@@ -6,7 +6,8 @@ CFLAGS      = -Wall -Wextra -Werror
 SRCS        = src/main.c src/stats.c src/stack_utils/stack_utils_i.c src/stack_utils/stack_utils_ii.c \
 			  src/parser/parse_flags.c src/parser/parse_utils.c src/parser/parser.c \
 			  src/operations/operations_swap.c src/operations/operations_push.c \
-			  src/operations/operations_rotate.c src/operations/operations_rev_rotate.c
+			  src/operations/operations_rotate.c src/operations/operations_rev_rotate.c src/indexing.c \
+			  src/algorithms/sort_three_elements.c
               
 
 RM          = rm -f

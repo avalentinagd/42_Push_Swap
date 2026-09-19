@@ -42,7 +42,7 @@ static void	print_stack(char *name, t_stack *stack)
 		curr = stack->top;
 		while (curr)
 		{
-			printf("%d ", curr->value);
+			printf("%d(%d) ", curr->value, curr->index);
 			curr = curr->next;
 		}
 	}
@@ -64,6 +64,7 @@ int	main(int argc, char **argv)
 		return (print_error());
 	if (!parse_arguments(argc, argv, stack_a, &stats))
 		return (free_stack(stack_a), free_stack(stack_b), 0);
+	index_stack(stack_a);
 
 	printf("\n=== ESTADO INICIAL ===\n");
 	print_stack("A", stack_a);

@@ -40,7 +40,7 @@ typedef struct s_stats
     int	bench;
     char	*strategy_name;
     int	total_ops;
-    double  disorder;
+    double	disorder;
     int	sa;
     int	sb;
     int	ss;
@@ -63,13 +63,13 @@ void	print_bench_results(t_stats *stats);
 // Funciones de gestión de staks (src/stack_utils_i.c)
 t_stack	*init_stack(void);
 t_node	*stack_new_node(int value);
-void    stack_add_top(t_stack *stack, t_node *new_node);
+void	stack_add_top(t_stack *stack, t_node *new_node);
 void	stack_add_bottom(t_stack *stack, t_node *new_node);
 void	free_stack(t_stack *stack);
 
 // Funciones de gestión de staks (src/stack_utils_ii.c)
-t_node  *pop_top(t_stack *stack);
-t_node  *pop_bottom(t_stack *stack);
+t_node	*pop_top(t_stack *stack);
+t_node	*pop_bottom(t_stack *stack);
 
 // Funciones de Parseo y Split (src/parse_utils.c)
 void	free_split(char **split);
@@ -91,13 +91,19 @@ int		parse_arguments(int argc, char **argv, t_stack *stack_a, t_stats *stats);
 void	op_sa(t_stack *stack_a, t_stats *stats);
 void	op_sb(t_stack *stack_b, t_stats *stats);
 void	op_ss(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
-void    op_pa(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
-void    op_pb(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
-void    op_ra(t_stack *stack_a, t_stats *stats);
-void    op_rb(t_stack *stack_b, t_stats *stats);
-void    op_rr(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
-void    op_rra(t_stack *stack_a, t_stats *stats);
-void    op_rrb(t_stack *stack_b, t_stats *stats);
-void    op_rrr(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
+void	op_pa(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
+void	op_pb(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
+void	op_ra(t_stack *stack_a, t_stats *stats);
+void	op_rb(t_stack *stack_b, t_stats *stats);
+void	op_rr(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
+void	op_rra(t_stack *stack_a, t_stats *stats);
+void	op_rrb(t_stack *stack_b, t_stats *stats);
+void	op_rrr(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
+
+//Indexing
+void    index_stack(t_stack *stack_a);
+
+//Algorithms
+void    sort_three_elements(t_stack *stack_a, t_stats *stats);
 
 #endif

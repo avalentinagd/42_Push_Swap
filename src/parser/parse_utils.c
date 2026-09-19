@@ -95,18 +95,18 @@ int	parse_long(char *str, long long *out_val)
 	return (1);
 }
 
-double	compute_disorder(t_stack *a)
+double	compute_disorder(t_stack *stack_a)
 {
 	t_node	*i;
 	t_node	*j;
 	long	mistakes;
 	long	total_pairs;
 
-	if (!a || a->size <= 1)
+	if (!stack_a || stack_a->size <= 1)
 		return (0.0);
 	mistakes = 0;
 	total_pairs = 0;
-	i = a->top;
+	i = stack_a->top;
 	while (i != NULL)
 	{
 		j = i->next;
