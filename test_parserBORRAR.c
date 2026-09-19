@@ -67,7 +67,7 @@ int	main(int argc, char **argv)
 // Compilación y Prueba:
 
 // # Compilar el test
-// cc -g -Wall -Wextra -Werror -I include -I libft test_parserBORRAR.c src/stats.c src/parser.c src/parse_utils.c src/parse_flags.c src/stack_utils.c libft/libft.a -o test_parser
+// cc -g -Wall -Wextra -Werror -I include -I libft test_parserBORRAR.c src/stats.c src/parser/parser.c src/parser/parse_utils.c src/parser/parse_flags.c src/stack_utils.c libft/libft.a -o test_parser
 
 // # Prueba 1: Números sueltos
 // ./test_parser 42 -10 0 100

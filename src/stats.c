@@ -66,6 +66,35 @@ void	ft_putnbr_stderr(int n)
 	write(2, &c, 1);
 }
 
+void	operations_stats(t_stats *stats)
+{
+	// 4. Desglose de operaciones: veces que se ejecuta cada instrucción durante el proceso de ordenación.
+	ft_putstr_stderr("[bench] sa: ");
+	ft_putnbr_stderr(stats->sa);
+	ft_putstr_stderr(" sb: ");
+	ft_putnbr_stderr(stats->sb);
+	ft_putstr_stderr(" ss: ");
+	ft_putnbr_stderr(stats->ss);
+	ft_putstr_stderr(" pa: ");
+	ft_putnbr_stderr(stats->pa);
+	ft_putstr_stderr(" pb: ");
+	ft_putnbr_stderr(stats->pb);
+	ft_putstr_stderr("\n");
+	ft_putstr_stderr("[bench] ra: ");
+	ft_putnbr_stderr(stats->ra);
+	ft_putstr_stderr(" rb: ");
+	ft_putnbr_stderr(stats->rb);
+	ft_putstr_stderr(" rr: ");
+	ft_putnbr_stderr(stats->rr);
+	ft_putstr_stderr(" rra: ");
+	ft_putnbr_stderr(stats->rra);
+	ft_putstr_stderr(" rrb: ");
+	ft_putnbr_stderr(stats->rrb);
+	ft_putstr_stderr(" rrr: ");
+	ft_putnbr_stderr(stats->rrr);
+	ft_putstr_stderr("\n");
+}
+
 // Imprime el reporte obligatorio en stderr si la flag bench está encendida
 void	print_bench_results(t_stats *stats)
 {
@@ -87,32 +116,5 @@ void	print_bench_results(t_stats *stats)
 	ft_putnbr_stderr(stats->total_ops);
 	ft_putstr_stderr("\n");
 
-	// 4. Desglose de operaciones
-	//	Guardan la frecuencia o cantidad de veces que el programa 
-	//	ejecuta cada instrucción específica durante el proceso de ordenación.
-	ft_putstr_stderr("[bench] sa: ");
-	ft_putnbr_stderr(stats->sa);
-	ft_putstr_stderr(" sb: ");
-	ft_putnbr_stderr(stats->sb);
-	ft_putstr_stderr(" ss: ");
-	ft_putnbr_stderr(stats->ss);
-	ft_putstr_stderr(" pa: ");
-	ft_putnbr_stderr(stats->pa);
-	ft_putstr_stderr(" pb: ");
-	ft_putnbr_stderr(stats->pb);
-	ft_putstr_stderr("\n");
-
-	ft_putstr_stderr("[bench] ra: ");
-	ft_putnbr_stderr(stats->ra);
-	ft_putstr_stderr(" rb: ");
-	ft_putnbr_stderr(stats->rb);
-	ft_putstr_stderr(" rr: ");
-	ft_putnbr_stderr(stats->rr);
-	ft_putstr_stderr(" rra: ");
-	ft_putnbr_stderr(stats->rra);
-	ft_putstr_stderr(" rrb: ");
-	ft_putnbr_stderr(stats->rrb);
-	ft_putstr_stderr(" rrr: ");
-	ft_putnbr_stderr(stats->rrr);
-	ft_putstr_stderr("\n");
+	operations_stats(stats);
 }
