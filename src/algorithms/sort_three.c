@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_three_elements.c                              :+:      :+:    :+:   */
+/*   sort_three.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angalleg <angalleg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../include/push_swap.h"
 
-static  void    sort_two_elements(t_stack *stack_a, t_stats *stats)
+static  void    sort_two(t_stack *stack_a, t_stats *stats)
 {
     if (!stack_a || stack_a->size != 2)
         return ;
@@ -21,14 +21,14 @@ static  void    sort_two_elements(t_stack *stack_a, t_stats *stats)
     op_sa(stack_a, stats);
 }
 
-void    sort_three_elements(t_stack *stack_a, t_stats *stats)
+void    sort_three(t_stack *stack_a, t_stats *stats)
 {
     if (!stack_a || stack_a->size <  2 || stack_a->size > 3)
         return ;
     if (compute_disorder(stack_a) == 0)
         return ;
     if (stack_a->size == 2)
-        return (sort_two_elements(stack_a, stats));
+        return (sort_two(stack_a, stats));
     index_stack(stack_a);
     if (stack_a->top->index == 0 && stack_a->top->next->index == 2)
         {

@@ -18,7 +18,7 @@ void    init_stats(t_stats *stats)
     stats->bench = 0;
     stats->strategy_name = "Adaptive"; // Nombre por defecto
     stats->total_ops = 0;
-	stats->disorder = 0.0;
+	stats->disorder = 0.00;
     stats->sa = 0;
     stats->sb = 0;
     stats->ss = 0;
@@ -32,39 +32,6 @@ void    init_stats(t_stats *stats)
     stats->rrr = 0;
 }
 
-// Función auxiliar para imprimir strings en stderr (fd 2)
-void ft_putstr_stderr(char *str)
-{
-    int i;
-
-    if (!str)
-        return ;
-    i = 0;
-    while (str[i])
-        i++;
-    write(2, str, i); // write con fd = 2 escribe en stderr
-}
-
-// Función auxiliar para imprimir enteros en stderr (fd 2)
-void	ft_putnbr_stderr(int n)
-{
-	char	c;
-
-	if (n < 0)
-	{
-		ft_putstr_stderr("-");
-		if (n == -2147483648)
-		{
-			ft_putstr_stderr("2147483648");
-			return ;
-		}
-		n = -n;
-	}
-	if (n >= 10)
-		ft_putnbr_stderr(n / 10);
-	c = (n % 10) + '0';
-	write(2, &c, 1);
-}
 
 void	operations_stats(t_stats *stats)
 {
@@ -100,11 +67,10 @@ void	print_bench_results(t_stats *stats)
 {
 	if (!stats || !stats->bench)
 		return ;
-
 	// 1. Mostrar desorden (multiplicado por 100 para porcentaje)
 	ft_putstr_stderr("[bench] disorder: ");
-	ft_putnbr_stderr((stats->disorder * 100));
-	ft_putstr_stderr("\n");
+	ft_putdouble_stderr((stats->disorder) * 100);
+	ft_putstr_stderr("%\n");
 
 	// 2. Mostrar estrategia
 	ft_putstr_stderr("[bench] strategy: ");

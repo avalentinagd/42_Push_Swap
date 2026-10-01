@@ -3,12 +3,15 @@ CC          = cc -g
 CFLAGS      = -Wall -Wextra -Werror
 
 # 1. Se eliminó src/ft_split.c porque ya viene incluido dentro de la libft.a
-SRCS        = src/main.c src/stats.c src/stack_utils/stack_utils_i.c src/stack_utils/stack_utils_ii.c \
+SRCS        = src/main.c src/stats/stats_utils.c src/stats/stats.c \
+			  src/stack_utils/stack_utils_i.c src/stack_utils/stack_utils_ii.c \
 			  src/parser/parse_flags.c src/parser/parse_utils.c src/parser/parser.c \
 			  src/operations/operations_swap.c src/operations/operations_push.c \
-			  src/operations/operations_rotate.c src/operations/operations_rev_rotate.c src/indexing.c \
-			  src/algorithms/sort_three_elements.c
-              
+			  src/operations/operations_rotate.c src/operations/operations_rev_rotate.c \
+			  src/indexing.c src/algorithms/sort_utils.c src/algorithms/sort_three.c \
+			  src/algorithms/sort_five.c src/algorithms/sort_simple.c \
+			  src/algorithms/sort_medium.c src/algorithms/sort_complex.c
+
 
 RM          = rm -f
 LIBFT_PATH  = libft

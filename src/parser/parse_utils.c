@@ -103,7 +103,7 @@ double	compute_disorder(t_stack *stack_a)
 	long	total_pairs;
 
 	if (!stack_a || stack_a->size <= 1)
-		return (0.0);
+		return (0.00);
 	mistakes = 0;
 	total_pairs = 0;
 	i = stack_a->top;
@@ -120,6 +120,6 @@ double	compute_disorder(t_stack *stack_a)
 		i = i->next;
 	}
 	if (total_pairs == 0)
-		return (0.0);
+		return (0.00);
 	return ((double)mistakes / total_pairs); // casteo a double: número decimal de precisión doble, evitando el error común de la división entera en C
 }

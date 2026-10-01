@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 		return (0);
 
 	init_stats(&stats); // Inicializamos las estadísticas a cero
-	stats.bench = 1; // Para probar la función, activamos el modo bench a mano temporalmente
+	//stats.bench = 1; // Para probar la función, activamos el modo bench a mano temporalmente
 	a = init_stack(); // Creamos la estructura del stack en memoria con init_stack que hace malloc
 	if (!a)
 		return (1);
@@ -67,7 +67,7 @@ int	main(int argc, char **argv)
 // Compilación y Prueba:
 
 // # Compilar el test
-// cc -g -Wall -Wextra -Werror -I include -I libft test_parserBORRAR.c src/stats.c src/parser/parser.c src/parser/parse_utils.c src/parser/parse_flags.c src/stack_utils.c libft/libft.a -o test_parser
+// cc -g -Wall -Wextra -Werror -I include -I libft test_parserBORRAR.c src/stats/stats.c src/stats/stats_utils.c src/parser/parser.c src/parser/parse_utils.c src/parser/parse_flags.c src/stack_utils/stack_utils_i.c libft/libft.a -o test_parser
 
 // # Prueba 1: Números sueltos
 // ./test_parser 42 -10 0 100
