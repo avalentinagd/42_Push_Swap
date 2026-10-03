@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 # include "libft.h"
 
 // Estructura del nodo de la Pila
@@ -114,11 +115,13 @@ void	sort_five(t_stack *a, t_stack *b, t_stats *stats);
 void	sort_simple(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
 void	sort_medium(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
 void	sort_complex(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
+void	sort_adaptive(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
 // (sort_utils.c)
 int		get_min_distance(t_stack *stack, int min_index);
 void	push_min_to_b(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
 int     get_max_distance(t_stack *stack, int max_index);
 void	push_max_to_a(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
+void	apply_strategy(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
 
 
 #endif

@@ -11,88 +11,30 @@
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-#include <stdio.h>
 
-// int	main(int argc, char **argv)
-// {
-// 	t_stats	stats;
-// 	int			i;
+//Función auxiliar para imprimir el contenido de una pila de top a bottom
+static void	print_stack(char *name, t_stack *stack)
+{
+	t_node	*curr;
 
-// 	init_stats(&stats);
-// 	if (argc < 2)
-// 		return (0);
-// 	i = 1;
-// 	while (i < argc)
-// 	{
-// 		check_flag(argv[i], &stats);
-// 		i++;
-// 	}
-// 	print_bench_results(&stats);
-// 	return (0);
-// }
+	printf("%s: [ ", name);
+	if (stack)
+	{
+		curr = stack->top;
+		while (curr)
+		{
+			printf("%d(%d) ", curr->value, curr->index);
+			curr = curr->next;
+		}
+	}
+	printf("]\n");
+}
 
-// Función auxiliar para imprimir el contenido de una pila de top a bottom
-// static void	print_stack(char *name, t_stack *stack)
-// {
-// 	t_node	*curr;
-
-// 	printf("%s: [ ", name);
-// 	if (stack)
-// 	{
-// 		curr = stack->top;
-// 		while (curr)
-// 		{
-// 			printf("%d(%d) ", curr->value, curr->index);
-// 			curr = curr->next;
-// 		}
-// 	}
-// 	printf("]\n");
-// }
-
-// int	main(int argc, char **argv)
-// {
-// 	t_stack	*stack_a;
-// 	t_stack	*stack_b;
-// 	t_stats	stats;
-
-// 	if (argc < 2)
-// 		return (0);
-// 	init_stats(&stats);
-// 	stack_a = init_stack();
-// 	stack_b = init_stack();
-// 	if (!stack_a || !stack_b)
-// 		return (print_error());
-// 	if (!parse_arguments(argc, argv, stack_a, &stats))
-// 		return (free_stack(stack_a), free_stack(stack_b), 0);
-// 	index_stack(stack_a);
-// 	stats.disorder = compute_disorder(stack_a);
-// 	//sort_simple(stack_a, stack_b, &stats);
-// 	//sort_medium(stack_a, stack_b, &stats);
-// 	sort_complex(stack_a, stack_b, &stats);
-// 	printf("\n Stack A ordenado: \n");
-// 	print_stack("A", stack_a);
-// 	print_stack("B", stack_b);
-// 	printf("\n Total de operaciones ejecutadas: %d\n", stats.total_ops);
-	
-// 	print_bench_results(&stats);
-
-// 	free_stack(stack_a);
-// 	free_stack(stack_b);
-// 	return (0);
-// }
-
-// make
-// ./push_swap 10 20 30 40
-// Para complex:
-// ARG=$(shuf -i 1-100 -n 100 | tr '\n' ' '); ./push_swap --bench --complex $ARG
-// ARG=$(shuf -i 1-500 -n 500 | tr '\n' ' '); ./push_swap --bench --complex $ARG
-
-// Main para probar el checker
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
-  	t_stack	*stack_b;
-  	t_stats	stats;
+	t_stack	*stack_b;
+	t_stats	stats;
 
 	if (argc < 2)
 		return (0);
@@ -104,13 +46,49 @@ int	main(int argc, char **argv)
 	if (!parse_arguments(argc, argv, stack_a, &stats))
 		return (free_stack(stack_a), free_stack(stack_b), 0);
 	index_stack(stack_a);
+	stats.disorder = compute_disorder(stack_a);
+	apply_strategy(stack_a, stack_b, &stats);
 
-	//sort_medium(stack_a, stack_b, &stats);
-	sort_complex(stack_a, stack_b, &stats);
+	printf("\n Stack A ordenado: \n"); // BORRAR
+	print_stack("A", stack_a); // BORRAR
+	print_stack("B", stack_b); // BORRAR
+
+	print_bench_results(&stats);
 	free_stack(stack_a);
- 	free_stack(stack_b);
+	free_stack(stack_b);
 	return (0);
 }
+
+// make
+// ./push_swap 10 20 30 40
+// Para complex:
+// ARG=$(shuf -i 1-100 -n 100 | tr '\n' ' '); ./push_swap --bench --complex $ARG
+// ARG=$(shuf -i 1-500 -n 500 | tr '\n' ' '); ./push_swap --bench --complex $ARG
+
+// Main para probar el checker
+// int	main(int argc, char **argv)
+// {
+// 	t_stack	*stack_a;
+//   	t_stack	*stack_b;
+//   	t_stats	stats;
+
+// 	if (argc < 2)
+// 		return (0);
+// 	init_stats(&stats);
+// 	stack_a = init_stack();
+// 	stack_b = init_stack();
+// 	if (!stack_a || !stack_b)
+// 		return (print_error());
+// 	if (!parse_arguments(argc, argv, stack_a, &stats))
+// 		return (free_stack(stack_a), free_stack(stack_b), 0);
+// 	index_stack(stack_a);
+
+// 	//sort_medium(stack_a, stack_b, &stats);
+// 	sort_complex(stack_a, stack_b, &stats);
+// 	free_stack(stack_a);
+//  	free_stack(stack_b);
+// 	return (0);
+// }
 // para probar el checker
 // make
 // intermedio:

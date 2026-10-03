@@ -85,3 +85,15 @@ void	push_max_to_a(t_stack *stack_a, t_stack *stack_b, t_stats *stats)
 	}
 	op_pa(stack_a, stack_b, stats);
 }
+
+void	apply_strategy(t_stack *stack_a, t_stack *stack_b, t_stats *stats)
+{
+	if (ft_strcmp(stats->strategy_name, "Adaptive") == 0)
+		sort_adaptive(stack_a, stack_b, stats);
+	else if (ft_strcmp(stats->strategy_name, "Simple / O(n^2)") == 0)
+		sort_simple(stack_a, stack_b, stats);
+	else if (ft_strcmp(stats->strategy_name, "Medium / O(n sqrt(n))") == 0)
+		sort_medium(stack_a, stack_b, stats);
+	else if (ft_strcmp(stats->strategy_name, "Complex / O(n log(n))") == 0)
+		sort_complex(stack_a, stack_b, stats);
+}

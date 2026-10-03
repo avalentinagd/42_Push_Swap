@@ -36,7 +36,7 @@ int check_flag(char *arg, t_stats *stats)
     else if (ft_strcmp(arg, "--medium") == 0)
         stats->strategy_name = "Medium / O(n sqrt(n))";
     else if (ft_strcmp(arg, "--complex") == 0)
-        stats->strategy_name = "Complex / O(n log n)";
+        stats->strategy_name = "Complex / O(n log(n))";
     else if (ft_strcmp(arg, "--adaptive") == 0)
         stats->strategy_name = "Adaptive";
     else if (arg[0] == '-' && arg[1] == '-')
