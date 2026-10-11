@@ -33,7 +33,7 @@ void    init_stats(t_stats *stats)
 }
 
 
-void	operations_stats(t_stats *stats)
+static void	operations_stats(t_stats *stats)
 {
 	// 4. Desglose de operaciones: veces que se ejecuta cada instrucción durante el proceso de ordenación.
 	ft_putstr_stderr("[bench] sa: ");

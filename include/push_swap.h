@@ -83,13 +83,11 @@ int		check_flag(char *arg, t_stats *stats);
 
 // Funciones de Parseo y Split (parse_utils.c)
 void	free_split(char **split);
-size_t	split_len(char **split);
 int		is_valid_number(char *str);
 int		parse_long(char *str, long long *out_val);
 double	compute_disorder(t_stack *a);
 
 // Parsing Core (parser.c)
-int		process_number(char *str, t_stack *stack);
 int		print_error(void);
 int		parse_arguments(int argc, char **argv, t_stack *stack_a, t_stats *stats);
 

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
+// función auxiliar para simplificar pasos repetitivos
 static  void    op_rotate_aux(t_stack *stack)
 {
     t_node  *top_node;

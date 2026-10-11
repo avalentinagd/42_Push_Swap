@@ -30,12 +30,12 @@ static int	is_duplicate(t_stack *stack, int num)
 }
 
 // Valida, convierte e inserta un número individual en la pila
-int	process_number(char *str, t_stack *stack)
+static int	process_number(char *str, t_stack *stack)
 {
 	long long	val;
 	t_node		*node;
 
-	if (!is_valid_number(str) || !parse_long(str, &val)) // Evaluando sintaxis no numérica o desbordamiento
+	if (!is_valid_number(str) || !parse_long(str, &val)) // Evaluando sintaxis no numérica o desbordamiento (parse_lon equivale al atoi)
 		return (0);
 	if (is_duplicate(stack, (int)val)) // Evaluando duplicados
 		return (0);
@@ -53,18 +53,18 @@ int	print_error(void)
 	return (0);
 }
 
-// Función auxiliar: recorre la matriz de números devuelta por ft_split
+// recorre la matriz de números devuelta por ft_split para validarlos o detectar errores
 static int	process_split(char **split, t_stack *stack_a)
 {
 	int	j;
 
-	if (!split || !split[0]) // Error 7, 8: falla del malloc interno o Cadena vacía
+	if (!split || !split[0]) // Error 7, 8: falla del malloc interno(split nulo) o primera cadena vacía
 	{
 		free_split(split);
 		return (print_error());
 	}
 	j = 0;
-	while (split[j])
+	while (split[j])// recorre los elementos del split hasta encontrar un puntero NULL(final del array)
 	{
 		if (!process_number(split[j], stack_a)) // Error 2, 3, 4, 5, 6: Sintaxis, overflow, duplicado
 		{

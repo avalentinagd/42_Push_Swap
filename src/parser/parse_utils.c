@@ -29,19 +29,6 @@ void	free_split(char **split)
 	free(split);
 }
 
-// Cuenta la cantidad de elementos devueltos por un Split
-size_t	split_len(char **split)
-{
-	size_t	i;
-
-	if (!split)
-		return (0);
-	i = 0;
-	while (split[i])
-		i++;
-	return (i);
-}
-
 // Valida que la cadena contenga solo caracteres enteros
 // entre '0' y '9', permitiendo opcionalmente un único signo + o - al comienzo.
 int	is_valid_number(char *str)
