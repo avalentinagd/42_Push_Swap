@@ -15,7 +15,7 @@
 // Función auxiliar para imprimir strings en stderr (fd 2)
 void    ft_putstr_stderr(char *str)
 {
-    int i;
+    int	i;
 
     if (!str)
         return ;
@@ -49,20 +49,20 @@ void	ft_putnbr_stderr(int n)
 // Imprime un número entre 0.00% y 100.00% usando ft_putstr_stderr y ft_putnbr_stderr
 void	ft_putdouble_stderr(double num)
 {
-	long	entera;
-	long	decimal;
+	long	integer_part;
+	long	decimal_part;
 
 	// Redondeo clásico a 2 decimales para evitar problemas de precisión flotante
 	num = num + 0.005;
-	entera = (long)num;
-	decimal = (long)((num - entera) * 100);
+	integer_part = (long)num;
+	decimal_part = (long)((num - integer_part) * 100);
 	
 	// Imprimimos la parte entera (será un número entre 0 y 100)
-	ft_putnbr_stderr(entera);
+	ft_putnbr_stderr(integer_part);
 	ft_putstr_stderr(".");
 	
 	// Si el residuo decimal es menor a 10 (ej: .05), forzamos el cero a la izquierda
-	if (decimal < 10)
+	if (decimal_part < 10)
 		ft_putstr_stderr("0");
-	ft_putnbr_stderr(decimal);
+	ft_putnbr_stderr(decimal_part);
 }
