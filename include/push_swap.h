@@ -55,14 +55,15 @@ typedef struct s_stats
     int	rrr;
 }   t_stats;
 
-// Reporte de estadísticas
+// Statistics
 // (stats_utils.c)
 void	ft_putdouble_stderr(double num);
 void	ft_putstr_stderr(char *str);
 void	ft_putnbr_stderr(int n);
-// (stats.c)
+// Reporte de estadísticas (stats.c)
 void	init_stats(t_stats *stats);
 void	print_bench_results(t_stats *stats);
+double	compute_disorder(t_stack *a);
 
 // Stacks
 // Funciones de gestión de staks (stack_utils_i.c)
@@ -71,7 +72,6 @@ t_node	*stack_new_node(int value);
 void	stack_add_top(t_stack *stack, t_node *new_node);
 void	stack_add_bottom(t_stack *stack, t_node *new_node);
 void	free_stack(t_stack *stack);
-
 // Funciones de gestión de staks (stack_utils_ii.c)
 t_node	*pop_top(t_stack *stack);
 t_node	*pop_bottom(t_stack *stack);
@@ -80,13 +80,10 @@ t_node	*pop_bottom(t_stack *stack);
 // Detección de Flags (parse_flags.c)
 int		ft_strcmp(const char *s1, const char *s2);
 int		check_flag(char *arg, t_stats *stats);
-
 // Funciones de Parseo y Split (parse_utils.c)
 void	free_split(char **split);
 int		is_valid_number(char *str);
 int		parse_long(char *str, long long *out_val);
-double	compute_disorder(t_stack *a);
-
 // Parsing Core (parser.c)
 int		print_error(void);
 int		parse_arguments(int argc, char **argv, t_stack *stack_a, t_stats *stats);
@@ -104,10 +101,10 @@ void	op_rra(t_stack *stack_a, t_stats *stats);
 void	op_rrb(t_stack *stack_b, t_stats *stats);
 void	op_rrr(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
 
-//Indexing
+// Indexing
 void    index_stack(t_stack *stack_a);
 
-//Algorithms
+// Algorithms
 void    sort_three(t_stack *stack_a, t_stats *stats);
 void	sort_five(t_stack *a, t_stack *b, t_stats *stats);
 void	sort_simple(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
@@ -120,6 +117,5 @@ void	push_min_to_b(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
 int     get_max_distance(t_stack *stack, int max_index);
 void	push_max_to_a(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
 void	apply_strategy(t_stack *stack_a, t_stack *stack_b, t_stats *stats);
-
 
 #endif

@@ -32,6 +32,34 @@ void    init_stats(t_stats *stats)
     stats->rrr = 0;
 }
 
+double	compute_disorder(t_stack *stack_a)
+{
+	t_node	*i;
+	t_node	*j;
+	long	mistakes;
+	long	total_pairs;
+
+	if (!stack_a || stack_a->size <= 1)
+		return (0.00);
+	mistakes = 0;
+	total_pairs = 0;
+	i = stack_a->top;
+	while (i != NULL)
+	{
+		j = i->next;
+		while (j != NULL)
+		{
+			total_pairs++;
+			if (i->value > j->value)
+				mistakes++;
+			j = j->next;
+		}
+		i = i->next;
+	}
+	if (total_pairs == 0)
+		return (0.00);
+	return ((double)mistakes / total_pairs); // casteo a double: número decimal de precisión doble, evitando el error común de la división entera en C
+}
 
 static void	operations_stats(t_stats *stats)
 {
