@@ -37,7 +37,7 @@ double	compute_disorder(t_stack *stack_a)
 	t_node	*i;
 	t_node	*j;
 	long	mistakes;
-	long	total_pairs;
+	long	total_pairs; // long: me evita desbordamientos de enteros
 
 	if (!stack_a || stack_a->size <= 1)
 		return (0.00);

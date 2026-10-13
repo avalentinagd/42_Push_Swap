@@ -81,6 +81,7 @@ t_node	*pop_bottom(t_stack *stack);
 int		ft_strcmp(const char *s1, const char *s2);
 int		check_flag(char *arg, t_stats *stats);
 // Funciones de Parseo y Split (parse_utils.c)
+size_t	split_len(char **split);
 void	free_split(char **split);
 int		is_valid_number(char *str);
 int		parse_long(char *str, long long *out_val);

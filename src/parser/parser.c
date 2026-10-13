@@ -58,7 +58,7 @@ static int	process_split(char **split, t_stack *stack_a)
 {
 	int	j;
 
-	if (!split || !split[0]) // Error 7, 8: falla del malloc interno(split nulo) o primera cadena vacía
+	if (!split || split_len(split)==0) // Error 7, 8: falla del malloc interno(split nulo) o primera cadena vacía
 	{
 		free_split(split);
 		return (print_error());

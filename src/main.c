@@ -64,6 +64,7 @@ int	main(int argc, char **argv)
 // Para complex:
 // ARG=$(shuf -i 1-100 -n 100 | tr '\n' ' '); ./push_swap --bench --complex $ARG
 // ARG=$(shuf -i 1-500 -n 500 | tr '\n' ' '); ./push_swap --bench --complex $ARG
+// ARG="48 12 89 3 95 27 61 14 78 33 50 9 82 41 67 22 90 5 73 38 100 17 64 29 85 52 8 71 44 96 20 60 35 88 11 75 49 2 93 26 58 15 81 37 69 24 99 6 74 43 87 19 63 31 92 55 1 70 42 84 18 57 32 97 10 77 46 86 23 62 36 91 4 72 45 80 13 66 28 98 51 7 76 40 83 25 59 16 94 39 68 21 79 47 500 30 54 34 65 53"; valgrind ./push_swap --bench - $ARG
 
 // Main para probar el checker
 // int	main(int argc, char **argv)
