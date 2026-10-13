@@ -11,7 +11,7 @@ SRCS        = src/main.c src/stats/stats_utils.c src/stats/stats.c \
 			  src/indexing.c src/algorithms/sort_utils.c src/algorithms/sort_three.c \
 			  src/algorithms/sort_five.c src/algorithms/sort_simple.c \
 			  src/algorithms/sort_medium.c src/algorithms/sort_complex.c \
-			  SRC/algorithms/sort_adaptive.c
+			  src/algorithms/sort_adaptive.c
 
 
 RM          = rm -f
