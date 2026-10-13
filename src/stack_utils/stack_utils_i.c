@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 // Inicializa una estructura t_stack vacía
 t_stack	*init_stack(void)

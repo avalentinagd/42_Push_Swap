@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 // Verifica si el número ya existe en el stack
 static int	is_duplicate(t_stack *stack, int num)

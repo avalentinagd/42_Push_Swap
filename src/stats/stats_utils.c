@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 // Función auxiliar para imprimir strings en stderr (fd 2)
 void    ft_putstr_stderr(char *str)

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 // Buscamos la distancia del mínimo a la cima
 int	get_min_distance(t_stack *stack, int min_index)

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 // Función auxiliar básica para comparar dos cadenas
 // const: indica que esta función va a leer el contenido de s1, pero promete no modificarlo

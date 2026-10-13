@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 // Cuenta la cantidad de elementos devueltos por un Split
 size_t	split_len(char **split)
