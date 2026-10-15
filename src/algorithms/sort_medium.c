@@ -25,9 +25,8 @@ static  int ft_sqrt(int n)
 }
 
 
-	//chunk_size = ft_sqrt(stack_a->size);
-	// if (stack_a->size > 100) // Si tenemos más de 100 args, amplíamos el tamaño del bloque un 50% (1.5 x sqrt{N}) para reducir las rotaciones innecesarias en A
-	// 	chunk_size = chunk_size * 3 / 2;
+//Para 100 elementos: Un chunk ideal está entre 15 y 18 (alrededor de 1.5 x sqrt{100}).
+//Para 500 elementos: Un chunk ideal está entre 35 y 45 (alrededor de 1.8 x sqrt{500}).
 static  void	push_chunks_to_b(t_stack *stack_a, t_stack *stack_b, t_stats *stats)
 {
 	int	chunk_size;
@@ -36,9 +35,9 @@ static  void	push_chunks_to_b(t_stack *stack_a, t_stack *stack_b, t_stats *stats
 
     chunk_size = ft_sqrt(stack_a->size);
     if (stack_a->size <= 100)
-        chunk_size = chunk_size * (13 / 10);
+        chunk_size = (chunk_size * 15) / 10;/* Multiplica por 1.5 */
     else
-        chunk_size = chunk_size * (15 / 10);
+        chunk_size = (chunk_size * 18) / 10;/* Multiplica por 1.8 */
     low = 0; // Inicializamos el rango de la ventana. Al principio, el rango aceptado de índices va desde 0 hasta chunk_size.
 	high = chunk_size;
 	while (stack_a->size > 0) // El bucle se detiene cuando la pila quede vacía
@@ -46,7 +45,7 @@ static  void	push_chunks_to_b(t_stack *stack_a, t_stack *stack_b, t_stats *stats
 		if (stack_a->top->index <= high) // Comprueba si top entra en el rango. Cualquien arg con index <= high se puede envíar a B
 		{
 			op_pb(stack_a, stack_b, stats); // el nodo pasa al top de B
-            if (stack_b->top->index < (low + chunk_size) / 2) // preordenamos B, si el nodo pertenece a la mitad inferior del rango [low. high] actual, ejecuta rb
+            if (stack_b->top->index < (low + high) / 2) // preordenamos B, si el nodo pertenece a la mitad inferior del rango [low. high] actual, ejecuta rb
                 op_rb(stack_b, stats);                        // punto medio del bloque: (low + chunk_size) / 2
 			low++;
 			high++;
@@ -58,6 +57,14 @@ static  void	push_chunks_to_b(t_stack *stack_a, t_stack *stack_b, t_stats *stats
 
 void	sort_medium(t_stack *stack_a, t_stack *stack_b, t_stats *stats)
 {
+	/* Si la pila tiene 5 o menos elementos desde el principio, 
+	   llamamos directamente a la función de casos pequeños */
+	if (stack_a->size <= 5)
+	{
+		sort_five(stack_a, stack_b, stats);
+		return ;
+	}
+
 	/* Aseguramos que los elementos tengan su índice asignado de 0 a N-1 */
 	index_stack(stack_a);
 

@@ -24,29 +24,42 @@ static int	get_max_bits(t_stack *stack)
 	return (max_bits); // EJ: (max_bits = 7) nos dice que se debe repetir el bucle del Radix Sort exactamente 7 veces.
 }
 
+static void	process_bit_pass(t_stack *stack_a, t_stack *stack_b, int bit, t_stats *stats)
+{
+	int	j;
+	int	size;
+
+	j = 0;
+	size = stack_a->size;
+	while (j < size)
+	{
+		if (((stack_a->top->index >> bit) & 1) == 0)
+			op_pb(stack_a, stack_b, stats);
+		else
+			op_ra(stack_a, stats);
+		j++;
+	}
+	while (stack_b->size > 0)
+		op_pa(stack_a, stack_b, stats);
+}
+
 void	sort_complex(t_stack *stack_a, t_stack *stack_b, t_stats *stats)
 {
 	int	i;
-	int	j;
-	int	size;
 	int	max_bits;
 
+	/* Si la pila tiene 5 o menos elementos desde el principio, 
+	   llamamos directamente a la función de casos pequeños */
+	if (stack_a->size <= 5)
+	{
+		sort_five(stack_a, stack_b, stats);
+		return ;
+	}
 	max_bits = get_max_bits(stack_a);
 	i = 0;
 	while (i < max_bits)
 	{
-		size = stack_a->size;
-		j = 0;
-		while (j < size)
-		{ // (index >> bit) mueve el bit que nos interesa a la primera posición a la derecha
-			if (((stack_a->top->index >> i) & 1) == 0) // & 1 solo mira el último bit de la derecha, devuelve 1(si es impar, termina en 1) o 0(si es par, termina en 0).
-				op_pb(stack_a, stack_b, stats);// Si el bit es 0, va a B
-			else
-				op_ra(stack_a, stats);// Si el bit es 1, se queda en A (rota hacia arriba)
-			j++;
-		}
-		while (stack_b->size > 0)
-			op_pa(stack_a, stack_b, stats);
+		process_bit_pass(stack_a, stack_b, i, stats);
 		i++;
 	}
 }
